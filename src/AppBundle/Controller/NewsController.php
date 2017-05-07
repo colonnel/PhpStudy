@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Record;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -15,12 +16,20 @@ class NewsController extends Controller
      */
     public function indexAction()
     {
-        $title_id = "ID";
-        $title_date = "Date";
-        $title_header = "Header";
-        return $this->render('news/news.html.twig', array('id' => $title_id, 'date' => $title_date,
-            'header' => $title_header));
+        $records_array = $this->generateArray();
+        return $this->render('news/news.html.twig', array('records' => $records_array));
     }
 
-
+    /**
+     * Function generates array of objects Record
+     * @return array
+     */
+    private function generateArray()
+    {
+        $array = array();
+        for ($i = 1; $i <= 5; $i++) {
+            $array[$i] = new Record($i, "Header #" . $i);
+        }
+        return $array;
+    }
 }

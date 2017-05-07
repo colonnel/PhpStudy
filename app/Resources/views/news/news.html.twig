@@ -1,21 +1,10 @@
 {% extends '::base.html.twig' %}
-{% block stylesheets %}
-<style>
-    table {
-        width: 100%; /* Ширина таблицы */
-        background: white; /* Цвет фона таблицы */
-        color: white; /* Цвет текста */
-        border-spacing: 2px; /* Расстояние между ячейками */
-    }
-    td, th {
-        background: maroon; /* Цвет фона ячеек */
-        padding: 5px; /* Поля вокруг текста */
-    }
-</style>
-{% endblock %}
 {% block body %}
-    <table>
-        <tr><th>{{ id }}</th><th>{{ date }}</th><th>{{ header }}</th></tr>
-        <tr><td></td><td></td><td></td></tr>
-    </table>
+    {% for record in records %}
+        &#167; Порядковый номер записи: {{ record.getId }}<br>
+        &#167; Дата записи: {{ record.getDate }}<br>
+        &#167; Заголовок записи: {{ record.getHeader }}<br>
+        <br>
+    {% endfor %}
+
 {% endblock %}
